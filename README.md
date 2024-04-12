@@ -17,6 +17,11 @@ El desarrollo del proyecto implicó varias etapas:
 
 3. Desarrollo del proxy: Se implementó un proxy para actuar como intermediario entre el cliente y el servidor. Además, se agregó un balanceador de carga al proxy utilizando el algoritmo de ordenamiento de burbuja como método de round robin. La concurrencia se utilizó para manejar múltiples conexiones entrantes y salientes de manera simultánea, lo que mejoró el rendimiento del proxy al distribuir la carga de manera equitativa entre los servidores backend.
 
+### Imagen ilustrativa del metodo de ordenamiento Burbuja usado
+
+![Balanceador de cargas](https://github.com/PabloBaezS/HTTP-Proxy-Telematica-Proyecto-1/blob/main/Balanceador%20de%20cargas.png)
+
+
 En resumen, en el proyecto se implementaron redes concurrentes utilizando la API de Berkeley para manejar las conexiones y las solicitudes HTTP, lo que permitió desarrollar varios servidores, un cliente y un proxy capaces de comunicarse de manera efectiva a través del protocolo HTTP/1.1.
 
 ### Implementación para el desarrollo
