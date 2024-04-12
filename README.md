@@ -1,18 +1,23 @@
-# HTTP-Proxy-Telematica-Proyecto-1
+# README PROYECTO 1 TELEMATICA
+
+## Video Explicacion en YouTube
+<https://youtu.be/URIkfOqyFmE>
 
 ## Introducción
 
-Este proyecto se centró en la implementación de un cliente, 3 servidores basados en AWS usando Ubuntu y un proxy utilizando el protocolo HTTP/1.1 y balanceador de cargas implementando el metodo Round Robin. Inicialmente, se intentó desarrollar el cliente en Java, pero debido a dificultades, se optó por utilizar Python. Se abordaron aspectos como el funcionamiento de las solicitudes GET y POST, así como la implementación de un balanceador de carga en el proxy utilizando el algoritmo de ordenamiento de burbuja.
+El proyecto se centró en la implementación de un cliente, 3 servidores basados en AWS usando Ubuntu y un proxy el cual implementaba un balanceador de cargas con el método Round Robin. Se usó el protocolo HTTP/1.1 y la API de Berkeley para manejar las distintas conexiones y las solicitudes HTTP, donde se vieron aspectos relacionados con la concurrencia, con el fin de mejorar el rendimiento del servidor y del proxy.
 
 ## Desarrollo
 
 El desarrollo del proyecto implicó varias etapas:
 
-1. **Implementación del servidor HTTP/1.1**: Se desarrolló el servidor para manejar las solicitudes GET y POST, así como las respuestas correspondientes de acuerdo con el protocolo HTTP/1.1.
+1. Implementación del Servidor HTTP/1.1: Se desarrolló el server para manejar las solicitudes GET, POST Y HEAD (El cual más adelante hablamos de las dificultades), así como las respuestas que tenían que ver con el protocolo HTTP/1.1. Se usó además la API para manejar las conexiones entrantes y salientes, lo que permitió al servidor comunicarse con los clientes correctamente.
 
-2. **Creación del cliente en Python**: Se creó un cliente en Python para enviar solicitudes GET y POST al servidor. Esto se hizo después de intentar sin éxito implementar el cliente en Java.
+2. Creación del cliente en Python: Se creó el cliente en Python (Por la facilidad de conexión a C, dado que es un lenguaje basado en C) el cual se encarga de enviar solicitudes GET, POST y HEAD al server. Esto se hizo usando el módulo "http.client", el cual forma parte de la API manejando las conexiones y las solicitudes.
 
-3. **Desarrollo del proxy**: Se implementó un proxy para actuar como intermediario entre el cliente y el servidor. Además, se agregó un balanceador de carga al proxy utilizando el algoritmo de ordenamiento de burbuja como método de round-robin.
+3. Desarrollo del proxy: Se implementó un proxy para actuar como intermediario entre el cliente y el servidor. Además, se agregó un balanceador de carga al proxy utilizando el algoritmo de ordenamiento de burbuja como método de round robin. La concurrencia se utilizó para manejar múltiples conexiones entrantes y salientes de manera simultánea, lo que mejoró el rendimiento del proxy al distribuir la carga de manera equitativa entre los servidores backend.
+
+En resumen, en el proyecto se implementaron redes concurrentes utilizando la API de Berkeley para manejar las conexiones y las solicitudes HTTP, lo que permitió desarrollar varios servidores, un cliente y un proxy capaces de comunicarse de manera efectiva a través del protocolo HTTP/1.1.
 
 ### Implementación para el desarrollo
 
@@ -42,16 +47,22 @@ El desarrollo del proyecto implicó varias etapas:
 - Creación de un proxy funcional con balanceador de carga.
 
 ### No logrados:
-- La funcionalidad HEAD no pudo ser implementada debido a dificultades para depurar el flujo de datos recibido.
-- Al principio, problemas con la gestión de la memoria en el servidor causaron errores debido a la basura dejada sin limpiar después de las solicitudes.
-- El contador interno del proxy para realizar el balanceo de carga no funcionaba correctamente dentro de un bucle que reiniciaba el contador con cada solicitud.
-- Problemas ocasionales al usar Apache, donde a veces se quedaba corriendo en el puerto deseado, requiriendo la terminación manual del proceso para liberar el puerto.
+
+- La funcionalidad HEAD, no pudimos implementarla debido a las dificultades para depurar el flujo de los datos que se recibían al hacer la solicitud.
+
+- Al principio, los problemas con la gestión de la memoria en el server, causaron problemas y errores debido a la "basura" que se quedaba al final, sin limpiarse luego de las solicitudes.
+
+- El contador interno del proxy para realizar el balanceo de las cargas entre los servidores, no funcionaba bien, dado que se encontraba en un bloque de "while" incorrecto, el cual reiniciaba el contador con cada solicitud.
+
+- Los problemas ocasionales al usar Apache, dado que se quedaba el puerto deseado abierto, el cual necesitaba ser detenido de forma manual.
 
 ## Conclusiones
 
-- A nivel de lenguaje de programación, la implementación en diferentes lenguajes no afectó significativamente el funcionamiento final del sistema, ya que la comunicación se basa en un conjunto de parámetros estándar.
-- La comunicación entre el cliente y el servidor a través de puertos requiere que ambos estén activos y "escuchando" para enviar y recibir solicitudes.
-- La implementación de este proyecto resalta la importancia de la lógica y el software en las redes, con pocos componentes físicos involucrados en comparación con otros sistemas. 
+- En cuanto al lenguaje de programación, la implementación en diferentes lenguajes de programación, no afecto realmente el funcionamiento final del sistema, a pesar de funcionar mejor en algunos que en otros, la comunicación al final se basa en un conjunto de parámetros estándar.
+
+-La comunicación entre cliente/servidor, a través de puertos requiere que los dos estén "activos y escuchando" para poder enviar y recibir solicitudes.
+
+- La implementación del proyecto nos demuestra la importancia de la lógica y el software en las redes actuales, donde se demuestra que con pocos componentes físicos involucrados es posible realizar una red compleja en comparación con otros sistemas.
 
 ## Referencias
 
