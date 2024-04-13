@@ -1,5 +1,10 @@
 # README PROYECTO 1 TELEMATICA
 
+# Integrantes
+- Juan Sebastian Camacho Palacio
+- Felipe Uribe Correa
+- Pablo Baez Santamaria
+
 ## Video Explicacion en YouTube
 <https://youtu.be/URIkfOqyFmE>
 
